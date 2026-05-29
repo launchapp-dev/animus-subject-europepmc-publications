@@ -1,0 +1,54 @@
+schema = "animus.plugin.v1"
+name = "animus-subject-europepmc-publications"
+version = "0.1.0"
+plugin_kind = "subject_backend"
+description = "Europe PMC publications subject backend plugin for Animus"
+protocol = "stdio"
+
+[binary]
+default = "animus-subject-europepmc-publications"
+
+[capabilities]
+streaming = false
+progress = false
+cancellation = false
+methods = [
+  "subject/list",
+  "subject/get",
+  "subject/schema",
+  "europepmc.publication/list",
+  "europepmc.publication/get",
+  "europepmc.publication/schema",
+  "health/check",
+]
+subject_kinds = ["europepmc.publication"]
+
+[[env]]
+key = "EUROPEPMC_QUERY"
+description = "Optional Europe PMC search query. Defaults to machine learning."
+required = false
+
+[[env]]
+key = "EUROPEPMC_SORT"
+description = "Optional Europe PMC sort expression."
+required = false
+
+[[env]]
+key = "EUROPEPMC_RESULT_TYPE"
+description = "Optional result type, such as core or lite."
+required = false
+
+[[env]]
+key = "EUROPEPMC_API_URL"
+description = "Optional Europe PMC API base URL. Defaults to https://www.ebi.ac.uk/europepmc/webservices/rest."
+required = false
+
+[[env]]
+key = "EUROPEPMC_LOCAL_QUERY"
+description = "Optional local text query applied to publications after fetch."
+required = false
+
+[[env]]
+key = "EUROPEPMC_LIMIT"
+description = "Optional maximum publication count from 1 to 1000. Defaults to 50."
+required = false
